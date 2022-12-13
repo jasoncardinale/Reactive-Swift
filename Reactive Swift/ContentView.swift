@@ -1,10 +1,4 @@
-//
-//  ContentView.swift
-//  Reactive Swift
-//
-//  Created by Jason Cardinale on 12/12/22.
-//
-
+import RxSwift
 import SwiftUI
 
 struct ContentView: View {
@@ -17,10 +11,14 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    func returnsObservable() -> Observable<ObservableObject> {
+        .just(ObservableObject(name: "Name"))
     }
 }
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
