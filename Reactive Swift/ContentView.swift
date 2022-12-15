@@ -11,14 +11,10 @@ struct ContentView: View {
         }
         .padding()
     }
-    
-    func returnsObservable() -> Observable<ObservableObject> {
-        .just(ObservableObject(name: "Name"))
-    }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

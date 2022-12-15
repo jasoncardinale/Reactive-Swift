@@ -1,5 +1,4 @@
 # Reactive-Swift
-
 This is essentially going to be written as a tutorial but it is mainly just a series of exercises I am writing to
 better understand how to use reactive programming in a an Xcode project accompanied by some notes.
 
@@ -7,9 +6,11 @@ better understand how to use reactive programming in a an Xcode project accompan
 The main idea behind an observable is to essentially keep track of a sequence of events. These events (or objects or types)
 can also receive updates asynchonously. 
 
-
 ## Creating Observables
+In order to subscribe to an observable and receive updates, we need to first create our observable. We can do so using several different methods. We will first look at `Observable.just` as it is relatively simple to understand due to it's simplistic use case. 
 
+###`Observable.just`
+Say we have a non-observable struct called `Car`. 
 
 ## Handling Observables
 ### onNext
