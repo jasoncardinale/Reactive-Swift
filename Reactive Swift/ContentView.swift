@@ -11,6 +11,10 @@ struct ContentView: View {
         }
         .padding()
     }
+    
+    func doSomething() {
+        let car = Car(model: "Camry", make: "Toyota", speedInMilesHour: 135, milesPerGallon: 30, bodyType: .sedan)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
