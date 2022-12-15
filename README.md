@@ -7,10 +7,26 @@ The main idea behind an observable is to essentially keep track of a sequence of
 can also receive updates asynchonously. 
 
 ## Creating Observables
-In order to subscribe to an observable and receive updates, we need to first create our observable. We can do so using several different methods. We will first look at `Observable.just` as it is relatively simple to understand due to it's simplistic use case. 
+In order to subscribe to an observable and receive updates, we need to first create our observable. We can do so using several different methods. We will first look at `Observable.just` as it is relatively simple to understand due to it's simplistic use case.
 
-###`Observable.just`
 Say we have a non-observable struct called `Car`. 
+
+```swift
+public struct Car {
+    public enum BodyType {
+        case sedan
+        case coupe
+        case suv
+        case truck
+    }
+    
+    public let model: String
+    public let make: String
+    public let speedInMilesHour: Int
+    public let milesPerGallon: Int
+    public let bodyType: BodyType
+}
+```
 
 ## Handling Observables
 ### onNext
