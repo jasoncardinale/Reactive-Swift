@@ -14,6 +14,12 @@ struct ContentView: View {
     
     func doSomething() {
         let car = Car(model: "Camry", make: "Toyota", speedInMilesHour: 135, milesPerGallon: 30, bodyType: .sedan)
+        let observableCar = Observable.create { observer in
+            observer.on(.next(car))
+            observer.on(.completed)
+            return Disposables.create()
+        }
+        let camry = Car()
     }
 }
 

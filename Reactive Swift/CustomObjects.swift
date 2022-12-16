@@ -20,6 +20,14 @@ public struct Car {
     public let speedInMilesHour: Int
     public let milesPerGallon: Int
     public let bodyType: BodyType
+    
+    public init(model: String = "Miata", make: String = "Mazda", speedInMilesHour: Int = 143, milesPerGallon: Int = 32, bodyType: BodyType = .coupe) {
+        self.model = model
+        self.make = make
+        self.speedInMilesHour = speedInMilesHour
+        self.milesPerGallon = milesPerGallon
+        self.bodyType = bodyType
+    }
 }
 
 public struct Plane {
