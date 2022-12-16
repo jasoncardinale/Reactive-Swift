@@ -37,6 +37,7 @@ public struct Car {
 }
 ```
 
+### just
 We can create an instance of `Car` has such
 
 ```swift
@@ -57,6 +58,7 @@ and now we have `observableCar` of type `Observable<Car>`. As I mentioned before
 benefits. This is because our struct instance is not capable of changing in anyway that would propagate updates down the observable chain. So `.just` just 
 gives us what is essentially a single use one-and-done observable. 
 
+### from
 What if instead of just tracking a single instance of a `Car` as an observable, we wanted to track a sequence of objects as an observable. This is were
 we can begin to see the distinction between synchronous and asynchronous observation (well at least identify what an observable that is synchronous throughout
 it's lifetime looks like). A `Sequence` in Swift can be thought of as any iterable list of elements, the most obvious of which being an array. We can use 
@@ -70,6 +72,7 @@ emit each car in the array one at a time.
 let cars: Observable<Car> = Observable.from([Car(model: "Supra"), Car(model: "WRX"), Car(model: "Camaro"), Car(model: "Mustang")])
 ```
 
+### create
 So `Observable.just` and `Observable.from` help us convert our regular old non-observable elements and sequences into observable elements and sequences. 
 However, while this is helpful when we want to conform to some observable standard when handling our data (say returning an observable from a function),
 how do we create observables that are asynchronous (since this is one of the most attractive use cases for observables in the first place)?
