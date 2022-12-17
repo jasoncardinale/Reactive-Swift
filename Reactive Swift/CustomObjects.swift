@@ -1,5 +1,9 @@
 import RxSwift
 
+public enum Error: Swift.Error {
+    case invalidVehicle
+}
+
 public enum VehicleType {
     case car(Car)
     case plane(Plane)

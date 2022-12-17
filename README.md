@@ -69,7 +69,7 @@ This is where `Observable.from` comes in. This operator takes in a sequence, an 
 emit each car in the array one at a time.
 
 ```swift
-let cars: Observable<Car> = Observable.from([Car(model: "Supra"), Car(model: "WRX"), Car(model: "Camaro"), Car(model: "Mustang")])
+let cars: Observable<Car> = Observable.from([Car(model: "Supra"), Car(model: "747"), Car(model: "Camaro"), Car(model: "Mustang")])
 ```
 
 ### create
@@ -85,10 +85,55 @@ executes as normal while the server prepares a response. When the response is re
 how something like that would work.
 
 ## Handling Observables
+We can create observables as was shown above, but how do we actually retrieve information from our observables? This is where subscriptions come in handy.
+Lets assume that most if the time when we are dealing with observables it is because we have an activity that we wish to run async from our 
+main thread. If this is the case, we can't just assign a variable or constant to the result of our function which returns an observable, since the process 
+of assigning this variable with a value would sit on the main thread. We can use `.subscribe` to handle an observable when it emits a value so that the rest
+of the application doesn't need to wait. 
+
+Essentially, we call subscribe like a member function on an observable
+
+```swift
+cars.subscribe()
+```
+
+and once the observable emits a value the subscribe closures will execute along with whatever logic we put in it. This information on it's own isn't incredibly
+userful so next I will talk about the different closures that can be triggered by an observable we have subscribed to.
+
 ### onNext
+`onNext` will be triggered for every element in an observable chain aside from the final element in that chain. In other words, using our `cars` observable 
+as an example, for each car in the sequence onNext will run. Let's take a look at this in code.
+
+```swift
+cars.subscribe(
+     onNext: { car in
+         print(car.model)
+     }
+)
+```
+
 
 
 ### onError
+```swift
+public enum Error: Swift.Error {
+    case invalidVehicle
+}
+```
+
+
+```swift
+cars.subscribe(
+    onNext: { car in
+        print(car.model)
+    },
+    onError: { error in
+        print(error.localizedDescription)
+    }
+)
+```
+
+
 
 
 ### onCompleted
