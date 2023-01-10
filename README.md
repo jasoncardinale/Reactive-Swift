@@ -112,8 +112,6 @@ cars.subscribe(
 )
 ```
 
-
-
 ### onError
 ```swift
 public enum Error: Swift.Error {
@@ -132,9 +130,6 @@ cars.subscribe(
     }
 )
 ```
-
-
-
 
 ### onCompleted
 
@@ -185,8 +180,6 @@ This can be achieved in a few different ways which I will explain in detail belo
 
 
 ### filter
-
-### take
 
 
 
