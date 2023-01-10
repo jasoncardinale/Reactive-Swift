@@ -140,6 +140,9 @@ cars.subscribe(
 
 
 ## Transforming Observables
+When it comes to using observables, one useful thing we can do is transform the type of an observable, ```Observable<Vehicle> -> Observable<Car>```.
+This can be achieved in a few different ways which I will explain in detail below.
+
 ### map
 
 

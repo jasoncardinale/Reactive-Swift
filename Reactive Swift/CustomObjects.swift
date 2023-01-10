@@ -5,10 +5,10 @@ public enum Error: Swift.Error {
 }
 
 public enum VehicleType {
-    case car(Car)
-    case plane(Plane)
-    case train(Train)
-    case boat(Boat)
+    case car
+    case plane
+    case train
+    case boat
 }
 
 public struct Car {
@@ -39,6 +39,13 @@ public struct Plane {
     public let company: String
     public let speedInMilesHour: Int
     public let wingSpanInFeet: Int
+    
+    public init(model: String = "747", company: String = "Boeing", speedInMilesHour: Int = 659, wingSpanInFeet: Int = 224) {
+        self.model = model
+        self.company = company
+        self.speedInMilesHour = speedInMilesHour
+        self.wingSpanInFeet = wingSpanInFeet
+    }
 }
 
 public struct Train {
@@ -58,4 +65,9 @@ public struct Boat {
 public struct Vehicle {
     public let name: String
     public let type: VehicleType
+    
+    public init(name: String = "Miata", type: VehicleType = .car) {
+        self.name = name
+        self.type = type
+    }
 }
