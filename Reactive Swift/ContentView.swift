@@ -35,6 +35,28 @@ struct ContentView: View {
         .padding()
     }
     
+    func somethingelse() {
+        let car = Observable.create { observer in
+            observer.onNext(Car())
+            observer.onCompleted()
+            return Disposables.create()
+        }
+        
+        car
+            .flatMap { car -> Vehicle in
+//                self.vehicle(from: car)
+                Vehicle()
+            }
+    }
+    
+    func vehicle(from car: Car) -> Observable<Vehicle> {
+        return Observable.create { observer in
+            observer.onNext(Vehicle(name: "\(car.make) \(car.model)", type: .car))
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
+    
     func something() -> Driver<Double> {
         return cars()
             .progressRange(end: 3)

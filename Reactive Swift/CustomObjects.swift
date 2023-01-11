@@ -2,6 +2,7 @@ import RxSwift
 
 public enum Error: Swift.Error {
     case invalidVehicle
+    case failed
 }
 
 public enum VehicleType {

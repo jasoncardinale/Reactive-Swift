@@ -135,13 +135,64 @@ cars.subscribe(
 
 
 ## Transforming Observables
-When it comes to using observables, one useful thing we can do is transform the type of an observable, ```Observable<Vehicle> -> Observable<Car>```.
+When it comes to using observables, one useful thing we can do is transform the type of an observable, `Observable<Vehicle> -> Observable<Car>`.
 This can be achieved in a few different ways which I will explain in detail below.
 
-### map
-
+One thing to note about transforming observables using either `map`, `flatMap`, or `compactMap` is that within the closure, we are able to 
+access the value currently being tracked by the observable. So in other words, calling `map` on an observable of type `Vehicle` 
+(`Observable<Vehicle>`), within the `map` closure we can access the `Vehicle` directly.
 
 ### flatMap
+`flatMap` should be used when we want to transform the type being tracked by an observable to an observable of another type.
+Say we are given the following function that takes a `Car` and returns an observable `Vehicle`.
+
+```
+func vehicle(from car: Car) -> Observable<Vehicle> {
+    return Observable.create { observer in
+        observer.onNext(Vehicle(name: "\(car.make) \(car.model)", type: .car))
+        observer.onCompleted()
+        return Disposables.create()
+    }
+}
+```
+
+Now imagine that the `Car` being passed to this function is being tracked by some observable, how can we access the observable in order to 
+use this function to carry out the transformation from `Car` to `Vehicle`? The following code uses the `flatMap` method to do exactly this.
+
+```
+let car = Observable.create { observer in
+    observer.onNext(Car())
+    observer.onCompleted()
+    return Disposables.create()
+}
+
+return car
+    .flatMap { [weak self] car -> Observable<Vehicle> in
+        guard let self = self else {
+            throw Error.failed
+        }
+        
+        self.vehicle(from: car)
+    }
+```
+
+This code will return an `Observable<Vehicle>`. We first generate a `Car` object and use it to create an observable. We then call the 
+`ObservableType` member function `.flatMap` on the `Observable<Car>`. Within the `.flatMap` closure we take the `Car` object as our sole 
+parameter and assign it the name `car`. We then specify that the return type of this closure is `Observable<Vehicle>` thus indicating our 
+intention to convert the given car to a vehicle. We also specify `[weak self]` in order to avoid a retain cycle within the closure.
+
+Aside from the `guard` statement, which is in place in order to verify that we indeed still have a reference to self, all that is left is to 
+return an `Observable<Vehicle>`. Note that this part is very important and is essentially what sets `flatMap` apart from `map`: we need to 
+return an `Observable<Vehicle>` and not just a `Vehicle` object. `flatMap` will not handle the conversion from non-observable to observable so
+if you attempt to return a `Vehicle` you will be met with this error.
+
+```
+Instance method 'flatMap' requires that 'Vehicle' conform to 'ObservableConvertibleType'
+```
+
+So that is how we can use `flatMap to transform an observable of one type to another.
+
+### map
 
 
 ### compactMap
