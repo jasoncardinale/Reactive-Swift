@@ -34,7 +34,7 @@ struct ContentView: View {
         }
         .padding()
     }
-    // temp change
+
     func somethingelse() {
         let car = Observable.create { observer in
             observer.onNext(Car())
@@ -42,11 +42,11 @@ struct ContentView: View {
             return Disposables.create()
         }
         
-        car
-            .flatMap { car -> Vehicle in
-//                self.vehicle(from: car)
-                Vehicle()
-            }
+//        car
+//            .flatMap { car -> Vehicle in
+////                self.vehicle(from: car)
+//                Vehicle()
+//            }
     }
     
     func vehicle(from car: Car) -> Observable<Vehicle> {
