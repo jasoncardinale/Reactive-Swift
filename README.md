@@ -198,7 +198,9 @@ if you attempt to return a `Vehicle` you will be met with this error.
 Instance method 'flatMap' requires that 'Vehicle' conform to 'ObservableConvertibleType'
 ```
 
-So that is how we can use `flatMap to transform an observable of one type to another.
+One way to think of how `flatMap` is working is it essentially taking an observable that emits one or more elements which themselves can in
+some way be turned into observables. So in our simple example we had the observable which emitted only one `Car` object. So there really
+wasn't any interesting merging going on because we essentially just took our `car` observable, flattened out all of the results into 
 
 ### `.map`
 Similar to `flatMap`, `map` will enable us to transform an observable we are given to an observable of another type. The one major difference
