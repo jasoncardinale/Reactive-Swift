@@ -27,7 +27,13 @@ public struct Car {
     public let milesPerGallon: Int
     public let bodyType: BodyType
     
-    public init(model: String = "Miata", make: String = "Mazda", speedInMilesHour: Int = 143, milesPerGallon: Int = 32, bodyType: BodyType = .coupe) {
+    public init(
+        model: String = "Miata", 
+        make: String = "Mazda", 
+        speedInMilesHour: Int = 143,
+        milesPerGallon: Int = 32, 
+        bodyType: BodyType = .coupe
+    ) {
         self.model = model
         self.make = make
         self.speedInMilesHour = speedInMilesHour
@@ -37,7 +43,7 @@ public struct Car {
 }
 ```
 
-### just
+### `.just`
 We can create an instance of `Car` has such
 
 ```swift
@@ -58,7 +64,7 @@ and now we have `observableCar` of type `Observable<Car>`. As I mentioned before
 benefits. This is because our struct instance is not capable of changing in anyway that would propagate updates down the observable chain. So `.just` just 
 gives us what is essentially a single use one-and-done observable. 
 
-### from
+### `.from`
 What if instead of just tracking a single instance of a `Car` as an observable, we wanted to track a sequence of objects as an observable. This is were
 we can begin to see the distinction between synchronous and asynchronous observation (well at least identify what an observable that is synchronous throughout
 it's lifetime looks like). A `Sequence` in Swift can be thought of as any iterable list of elements, the most obvious of which being an array. We can use 
@@ -72,7 +78,7 @@ emit each car in the array one at a time.
 let cars: Observable<Car> = Observable.from([Car(model: "Supra"), Car(model: "747"), Car(model: "Camaro"), Car(model: "Mustang")])
 ```
 
-### create
+### `.create`
 So `Observable.just` and `Observable.from` help us convert our regular old non-observable elements and sequences into observable elements and sequences. 
 However, while this is helpful when we want to conform to some observable standard when handling our data (say returning an observable from a function),
 how do we create observables that are asynchronous (since this is one of the most attractive use cases for observables in the first place)?
@@ -100,7 +106,7 @@ cars.subscribe()
 and once the observable emits a value the subscribe closures will execute along with whatever logic we put in it. This information on it's own isn't incredibly
 userful so next I will talk about the different closures that can be triggered by an observable we have subscribed to.
 
-### onNext
+### `onNext`
 `onNext` will be triggered for every element in an observable chain aside from the final element in that chain. In other words, using our `cars` observable 
 as an example, for each car in the sequence onNext will run. Let's take a look at this in code.
 
@@ -110,6 +116,7 @@ cars.subscribe(
          print(car.model)
      }
 )
+.disposed(by: disposeBag)
 ```
 
 ### onError
@@ -129,9 +136,10 @@ cars.subscribe(
         print(error.localizedDescription)
     }
 )
+.disposed(by: disposeBag)
 ```
 
-### onCompleted
+### `onCompleted`
 
 
 ## Transforming Observables
@@ -142,7 +150,7 @@ One thing to note about transforming observables using either `map`, `flatMap`, 
 access the value currently being tracked by the observable. So in other words, calling `map` on an observable of type `Vehicle` 
 (`Observable<Vehicle>`), within the `map` closure we can access the `Vehicle` directly.
 
-### flatMap
+### `.flatMap`
 `flatMap` should be used when we want to transform the type being tracked by an observable to an observable of another type.
 Say we are given the following function that takes a `Car` and returns an observable `Vehicle`.
 
@@ -192,26 +200,39 @@ Instance method 'flatMap' requires that 'Vehicle' conform to 'ObservableConverti
 
 So that is how we can use `flatMap to transform an observable of one type to another.
 
-### map
+### `.map`
+Similar to `flatMap`, `map` will enable us to transform an observable we are given to an observable of another type. The one major difference
+here is that what we return from the `map` closure is the observed element rather than the observable itself.
 
+Therefore, with `map` we are able to something like this now ...
 
-### compactMap
+```
+let result = car
+    .map { car -> Vehicle in
+        Vehicle(name: "\(car.make) \(car.model)", type: .car)
+    }
+```
+
+`result` here will still be of type `Observable<Vehicle>`. This is great for when we want to continue to track a sequence, wish to transform
+the elements being tracked, but don't need any more async information from another observable sequence.
+
+### `.compactMap`
 
 
 ## Disposing of Observables
 
 
 ## Combining Observables
-### zip
+### `.zip`
 
 
-### combineLatest
+### `.combineLatest`
 
 
-### merge
+### `.merge`
 
 
-### concat
+### `.concat`
 
 
 ## Find a descriptive label for this later
