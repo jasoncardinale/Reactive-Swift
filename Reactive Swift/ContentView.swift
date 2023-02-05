@@ -37,10 +37,13 @@ struct ContentView: View {
 
     func somethingelse() {
         let car = Observable.create { observer in
-            observer.onNext(Car())
+            observer.onNext(VehicleType.car)
             observer.onCompleted()
             return Disposables.create()
         }
+        
+        let obs = Observable.from([Car()])
+        let obs2 = Observable.of(Car(), Car(), Car())
         
 //        car
 //            .flatMap { car -> Vehicle in
