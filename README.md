@@ -139,6 +139,27 @@ cars.subscribe(
 .disposed(by: disposeBag)
 ```
 
+We can then expect the output of said code to look like ...
+
+```
+Supra
+F-150
+Challenger
+Prius
+```
+
+It is important to note that `subscribe` is required in order for the values emitted by the observable to actually be retrieved. An observable
+cannot simply be read like a variable or called like a function. 
+
+It is also important to note that in this is example we are using the `cars` observable we created earlier using `Observable.of`. While this
+does demonstrate how `subscribe` works in the sense that we can essentially pop from the observable stack all of the `Car` objects we pushed in,
+it isn't necessarily a good example of the asyncronous power subscriptions provide since all the events are emitted at once one after the other.
+
+Like I mentioned earlier, a common use case for observables is working with servers and waiting for responses. So let's create an example where
+that is the case. 
+
+
+
 ### onError
 ```swift
 public enum Error: Swift.Error {
