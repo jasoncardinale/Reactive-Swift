@@ -13,6 +13,7 @@
 		945F70C729481BBD008108C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F70C629481BBD008108C4 /* ContentView.swift */; };
 		945F70C929481BC1008108C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945F70C829481BC1008108C4 /* Assets.xcassets */; };
 		945F70CC29481BC1008108C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945F70CB29481BC1008108C4 /* Preview Assets.xcassets */; };
+		9478707D29920624000A96DF /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478707C29920624000A96DF /* Server.swift */; };
 		B7A9574935CEB3B3116EAA38 /* Pods_Reactive_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBFE09AF5C708ED77291BA6 /* Pods_Reactive_Swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		945F70C629481BBD008108C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		945F70C829481BC1008108C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		945F70CB29481BC1008108C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9478707C29920624000A96DF /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		BF308805C83600D730237B1E /* Pods-Reactive Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactive Swift.release.xcconfig"; path = "Target Support Files/Pods-Reactive Swift/Pods-Reactive Swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				945F70C829481BC1008108C4 /* Assets.xcassets */,
 				945F70CA29481BC1008108C4 /* Preview Content */,
 				942F8AE22948327F0093E00C /* CustomObjects.swift */,
+				9478707C29920624000A96DF /* Server.swift */,
 			);
 			path = "Reactive Swift";
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9478707D29920624000A96DF /* Server.swift in Sources */,
 				941FC4A9296D088800681950 /* ProgressState.swift in Sources */,
 				945F70C729481BBD008108C4 /* ContentView.swift in Sources */,
 				945F70C529481BBD008108C4 /* Reactive_SwiftApp.swift in Sources */,

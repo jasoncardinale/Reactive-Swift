@@ -158,7 +158,7 @@ it isn't necessarily a good example of the asyncronous power subscriptions provi
 Like I mentioned earlier, a common use case for observables is working with servers and waiting for responses. So let's create an example where
 that is the case. 
 
-
+// Todo
 
 ### onError
 ```swift
@@ -281,7 +281,6 @@ the elements being tracked, but don't need any more async information from anoth
 
 
 ## Find a descriptive label for this later
-
 ### share
 
 
@@ -292,7 +291,6 @@ the elements being tracked, but don't need any more async information from anoth
 
 
 ## Filtering Observables
-
 ### take
 
 
